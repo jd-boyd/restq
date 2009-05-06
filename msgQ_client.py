@@ -4,6 +4,11 @@ import httplib
 class msgclient:
     def __init__(self, qServerUrl):
         self._url=qServerUrl
+        self._hostname=self._url
+        if self._hostname[-1]=="/":  #remove trailing /
+            self._hostname = self._hostname[:-1] 
+        if self._hostname[:7]=="http://":
+            self._hostname = self._hostname[7:]
         
     def get(self, qName):
         url = self._url+qName
@@ -33,8 +38,7 @@ class msgclient:
         return data
 
     def put(self, qName):
-        
-        conn = httplib.HTTPConnection("localhost:8990")
+        conn = httplib.HTTPConnection(self._hostname)
         conn.request("PUT", "/" + qName)
         r1 = conn.getresponse()
         print r1.status, r1.reason
