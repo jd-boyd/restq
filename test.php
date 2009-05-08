@@ -3,17 +3,19 @@
 require_once "RESTclient.php";
 require_once "msgQ_client.php";
 
-put("phpQ");
+$mq = new msgclient("http://localhost:8990/");
 
-for($i = 0 ; $i < 10000 ; $i += 1)
+$mq->put("phpQ");
+
+for($i = 0 ; $i < 1000 ; $i += 1)
 {
-  post("phpQ", "phpTest".$i);
+  $mq->post("phpQ", "phpTest".$i);
 }
 
-for($i = 0 ; $i < 10000 ; $i += 1)
+for($i = 0 ; $i < 1000 ; $i += 1)
 {
   //echo "Return ", get("phpQ"), "\n";
-  $res=get("phpQ");
+  $res=$mq->get("phpQ");
 }
 
 ?>
