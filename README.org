@@ -72,7 +72,7 @@ The body of the post will be the contents of the message.
 
 Gets that do not match the following patterns will be answered with a 404.
 
-** GET msg\//queueName/
+** GET msg/ /queueName/
 
 Get the next message from the queue <em>queueName</em>.  Here I need some way to to return a message ID in addition to the message body.  It may make sense for the response to be JSON: {'id': <em>integer</em>, 'content': &lt;valid JSON here&gt;}
 
