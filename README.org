@@ -7,7 +7,7 @@ The initial summary of what I need is a light weight method for PHP
 end program written in Python.  However, in the future other languages
 may be used, so general cross language compatibility is important.
 That means either bindings exist for every conceivable language, or
-bindings are trivial to write.  Also, the solution must run on
+bindings are trivial to write. Also, the solution must run on
 Solaris.
 
 * Comparison:
@@ -18,12 +18,12 @@ run in mod_php.
 
 Looking at other solutions, I don't want to run anything that requires
 Java for the server.  That rules out Apache ActiveMQ and other JMS
-systems.  I also believe that XMPP is too heavy weight to parse.  I
+systems.  I also believe that XMPP is too heavy weight to parse. I
 also found some systems written in Perl, Ruby, and PHP, but they
 looked rather slap dash, and I don't particularly want to use those
-languages.  The initial requirement for supporting PHP is only because
-I'm working on a PHP web app that I forked.  I do not want to add any
-new PHP code bases that I need to maintain.  Besides, once I start
+languages. The initial requirement for supporting PHP is only because
+I'm working on a PHP web app that I forked. I do not want to add any
+new PHP code bases that I need to maintain. Besides, once I start
 looking at fringe choices, it gets to be a lot easier to justify
 writing my own, particularly if I am going to use it as a learning
 project to get more familiar with, say, Erlang.
@@ -50,7 +50,7 @@ Initially this will not support persistence.
 Also, this will not support any security.
 
 * Commands (AKA API):
-<strong>PUT <em>queueName</em></strong>
+<strong>PUT _queueName_</strong>
 
 Create a new queue. What the responses will be still need to be decided.
 
