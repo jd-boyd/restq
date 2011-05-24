@@ -60,7 +60,7 @@ Responses:
 
 409 already existed.
 
-<strong>POST <em>queueName</em></strong>
+*POST <em>queueName</em>*
 
 The body of the post will be the contents of the message.
 
@@ -68,11 +68,11 @@ The body of the post will be the contents of the message.
 
 201 created, and perhaps the entity will be an id for the message.
 
-<strong>GET</strong>
+*GET*
 
 Gets that do not match the following patterns will be answered with a 404.
 
-<strong>GET msg/<em>queueName</em></strong>
+*GET msg/<em>queueName</em>*
 
 Get the next message from the queue <em>queueName</em>.  Here I need some way to to return a message ID in addition to the message body.  It may make sense for the response to be JSON: {'id': <em>integer</em>, 'content': &lt;valid JSON here&gt;}
 
@@ -82,13 +82,13 @@ If the response is as proposed, the the contents of the POST must be valid JSON 
 
 200, the message
 
-<strong>GET queues</strong>
+*GET queues*
 
 Get a list of the created queues.
 
 200
 
-<strong>DELETE <em>queueName</em>/<em>integer</em></strong>
+*DELETE <em>queueName</em>/<em>integer</em>*
 
 Delete a message identified with integer from queue <em>queueName</em>.
 
@@ -96,7 +96,7 @@ Delete a message identified with integer from queue <em>queueName</em>.
 
 403, queuename or integer not found.
 
-<strong>DELETE <em>queueName</em></strong>
+*DELETE <em>queueName</em>*
 
 Delete a queue and all the messages in it.
 
