@@ -96,7 +96,7 @@ Delete a message identified with integer from queue <em>queueName</em>.
 
 403, queuename or integer not found.
 
-*DELETE <em>queueName</em>*
+** DELETE <em>queueName</em>*
 
 Delete a queue and all the messages in it.
 
