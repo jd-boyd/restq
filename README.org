@@ -1,0 +1,71 @@
+First, why a new one?  Because I haven't found any that do what I need and look simple and well supported.  Besides, it seems like a reasonable learning experience.
+
+The initial summary of what I need is a light weight method for PHP (in the form of scripts running in mod_php) to send messages to a back end program written in Python.  However, in the future other languages may be used, so general cross language compatibility is important.  That means either bindings exist for every conceivable language, or bindings are trivial to write.  Also, the solution must run on Solaris.
+<h2>Comparison:</h2>
+At work I use Apache QPID, which is an AMQP implementation.  I can't find any PHP client for AMQP though.  I was able to find discussion that suggested that the AMQP protocol is too heavyweight for PHP being run in mod_php.
+
+Looking at other solutions, I don't want to run anything that requires Java for the server.  That rules out Apache ActiveMQ and other JMS systems.  I also believe that XMPP is too heavy weight to parse.  I also found some systems written in Perl, Ruby, and PHP, but they looked rather slap dash, and I don't particularly want to use those languages.  The initial requirement for supporting PHP is only because I'm working on a PHP web app that I forked.  I do not want to add any new PHP code bases that I need to maintain.  Besides, once I start looking at fringe choices, it gets to be a lot easier to justify writing my own, particularly if I am going to use it as a learning project to get more familiar with, say, Erlang.
+<h2>Summary:</h2>
+It is to be a RESTful design.  I will be using JSON for the payloads, but I haven't decided yet if it makes sense to force this, or if it makes sense to allow all ascii data.  Queues will be single read, meaning that if multiple end points need to get the same message, then there will need to be a separate queue for each end point.  Initially there will be no security model or persistence.  Commands will be standard HTTP verbs.  If possible I will try to make response codes valid HTTP response codes.
+<h2>Goals:</h2>
+Run on Solaris
+
+Support Python, PHP, and Javascript as clients.
+<h2>Limitations:</h2>
+Initially this will not support persistence.
+
+Also, this will not support any security.
+<h2>Commands:</h2>
+<strong>PUT <em>queueName</em></strong>
+
+Create a new queue. What the responses will be still need to be decided.
+
+Responses:
+
+201 created, entity required, probably just a confirmation message
+
+409 already existed.
+
+<strong>POST <em>queueName</em></strong>
+
+The body of the post will be the contents of the message.
+
+403 queueName wasn't found.
+
+201 created, and perhaps the entity will be an id for the message.
+
+<strong>GET</strong>
+
+Gets that do not match the following patterns will be answered with a 404.
+
+<strong>GET msg/<em>queueName</em></strong>
+
+Get the next message from the queue <em>queueName</em>.  Here I need some way to to return a message ID in addition to the message body.  It may make sense for the response to be JSON: {'id': <em>integer</em>, 'content': &lt;valid JSON here&gt;}
+
+If the response is as proposed, the the contents of the POST must be valid JSON as well.
+
+403 queueName wasn't found.
+
+200, the message
+
+<strong>GET queues</strong>
+
+Get a list of the created queues.
+
+200
+
+<strong>DELETE <em>queueName</em>/<em>integer</em></strong>
+
+Delete a message identified with integer from queue <em>queueName</em>.
+
+204 deleted, no entity required
+
+403, queuename or integer not found.
+
+<strong>DELETE <em>queueName</em></strong>
+
+Delete a queue and all the messages in it.
+
+204 Deleted, no entity in response
+
+403 queueName wasn't found
