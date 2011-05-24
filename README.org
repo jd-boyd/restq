@@ -50,7 +50,7 @@ Initially this will not support persistence.
 Also, this will not support any security.
 
 * Commands (AKA API):
-*PUT /queueName/*
+** PUT /queueName/*
 
 Create a new queue. What the responses will be still need to be decided.
 
