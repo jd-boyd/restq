@@ -88,7 +88,7 @@ Get a list of the created queues.
 
 200
 
-** DELETE /queueName///integer/
+** DELETE /queueName\/integer/
 
 Delete a message identified with integer from queue <em>queueName</em>.
 
