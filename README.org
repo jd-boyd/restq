@@ -80,7 +80,7 @@ formatting issues.)
 Get the next message from the queue /queueName/. Here I need
 some way to to return a message ID in addition to the message body.
 It may make sense for the response to be JSON: {'id':
-/integer/, 'content': &lt;valid JSON here&gt;}
+/integer/, 'content': <valid JSON here>}
 
 If the response is as proposed, the the contents of the POST must be valid JSON as well.
 
