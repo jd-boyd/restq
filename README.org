@@ -74,7 +74,13 @@ Gets that do not match the following patterns will be answered with a 404.
 
 ** GET msg/ /queueName/
 
-Get the next message from the queue <em>queueName</em>.  Here I need some way to to return a message ID in addition to the message body.  It may make sense for the response to be JSON: {'id': <em>integer</em>, 'content': &lt;valid JSON here&gt;}
+(Note: there is no space between msg/ and queueName, I'm just having
+formatting issues.)
+
+Get the next message from the queue /queueName/. Here I need
+some way to to return a message ID in addition to the message body.
+It may make sense for the response to be JSON: {'id':
+/integer/, 'content': &lt;valid JSON here&gt;}
 
 If the response is as proposed, the the contents of the POST must be valid JSON as well.
 
